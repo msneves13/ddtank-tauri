@@ -73,11 +73,10 @@ export function ServerSelectionForm() {
 
     const command = Command.sidecar("binaries/flash", [`--url=${url}`])
 
-    await command.spawn()
-
-    command.addListener('close', async (e) => {
+    command.addListener("close", async (e) => {
       setIsRunning(false)
-      await appWindow.unminimize()
+      appWindow.unminimize()
+      appWindow.setFocus()
     })
 
     toast({
@@ -89,6 +88,8 @@ export function ServerSelectionForm() {
         </>
       ),
     })
+
+    await command.execute()
   }
 
   return (
@@ -100,6 +101,7 @@ export function ServerSelectionForm() {
         <FormField
           control={form.control}
           name="server"
+          defaultValue="1"
           render={({ field }) => (
             <FormItem>
               <Select onValueChange={field.onChange} defaultValue={field.value}>
