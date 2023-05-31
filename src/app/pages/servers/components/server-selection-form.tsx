@@ -71,7 +71,6 @@ export function ServerSelectionForm() {
 
     const url = `https://ddtank4.com.br/flash/Loading.swf?user=${user.email}&key=${loadingData.token}&v=104&rand=${loadingData.time}&config=https://ddtank4.com.br/gameconfig/2.xml`
 
-    console.log(url)
     const command = Command.sidecar("binaries/flash", [`--url=${url}`])
 
     await command.spawn()

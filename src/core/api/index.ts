@@ -22,8 +22,6 @@ api.interceptors.request.use(async (config) => {
     config.headers.Authorization = `Bearer ${storedAuthData?.token}`
   }
 
-  console.log("config", config)
-
   return config
 })
 

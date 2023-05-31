@@ -29,7 +29,6 @@ class AuthService {
     >(this.authUserGateway.register(user))
 
     if (gatewayError) {
-      console.log(gatewayError?.response?.data)
       throw new Error(
         gatewayError?.response?.data?.[0] ?? this.errors.REGISTER_ERROR
       )
@@ -45,7 +44,6 @@ class AuthService {
     >(this.authUserGateway.login(payload))
 
     if (loginError) {
-      console.log(loginError?.response?.data)
       throw new Error(
         loginError.response?.data?.errors?.[0] ??
           this.errors.DEFAULT_LOGIN_ERROR
@@ -62,7 +60,6 @@ class AuthService {
     >(this.authUserGateway.loadingAuth(serverId))
 
     if (loadingError) {
-      console.log(loadingError?.response?.data)
       throw new Error(
         loadingError.response?.data?.errors?.[0] ??
           this.errors.LOADING_AUTH_ERROR
