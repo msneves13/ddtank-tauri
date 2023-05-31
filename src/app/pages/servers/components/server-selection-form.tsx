@@ -43,7 +43,7 @@ export function ServerSelectionForm() {
 
   const renderer = ({ seconds, completed }: CountdownRenderProps) => {
     if (completed) {
-      appWindow.close()
+      appWindow.minimize()
       return <span>0</span>
     } else {
       return <span>{seconds}</span>
@@ -75,11 +75,16 @@ export function ServerSelectionForm() {
 
     await command.spawn()
 
+    command.addListener('close', async (e) => {
+      setIsRunning(false)
+      await appWindow.unminimize()
+    })
+
     toast({
       title: "Bom jogo!",
       description: (
         <>
-          O Launcher se fechará em{" "}
+          O Launcher será minimizado em{" "}
           <Countdown date={Date.now() + 5000} renderer={renderer} /> segundos.
         </>
       ),
@@ -113,7 +118,7 @@ export function ServerSelectionForm() {
         />
         <Button className="w-full" disabled={isRunning} type="submit">
           {isRunning && <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />}
-          Jogar
+          {isRunning ? <span>Jogando</span> : <span>Jogar</span>}
         </Button>
         <div className="flex flex-row gap-4">
           <Button
