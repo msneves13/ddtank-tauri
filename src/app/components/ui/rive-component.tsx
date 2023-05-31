@@ -1,5 +1,5 @@
-import { memo } from "react"
 import { Alignment, Fit, Layout, useRive } from "@rive-app/react-canvas"
+import { memo } from "react"
 
 export const RiveComponent = memo(() => {
   const { RiveComponent } = useRive({
