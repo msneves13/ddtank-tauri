@@ -1,6 +1,6 @@
 [package]
 name = "ddtank-launcher"
-version = "0.0.0"
+version = "1.0.0"
 description = "A DDTank Launcher"
 authors = ["you"]
 license = ""
